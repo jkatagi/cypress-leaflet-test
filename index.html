@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-css@0.1.0/dist/leaflet.css.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/vue2-leaflet@1.0.1/dist/vue2-leaflet.js"></script>
+
+  <style type="text/css">
+    html, body, #app {
+      height: 500px;
+      width: 1000px;
+    }
+  </style>
+  
+  <title>Cyperss leaflet test</title>
+</head>
+<body>
+    <div id="app">
+    <l-map :zoom="zoom" :center="center">
+      <l-tile-layer 
+        :url="url" :attribution="attribution"></l-tile-layer>
+      <l-marker :lat-lng="marker" :draggable=true :icon="icon"></l-marker>
+    </l-map>
+  </div>
+</body>
+
+  <script>
+  var { LMap, LTileLayer, LMarker } = Vue2Leaflet;
+
+  new Vue({
+    el: '#app',
+    components: { LMap, LTileLayer, LMarker },
+    data() {
+      return {
+        zoom:13,
+        center: L.latLng(47.413220, -1.219482),
+        url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        attribution:'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        marker: L.latLng(47.413220, -1.219482),
+        icon: L.icon({
+          iconUrl : './images/marker-icon.png'
+        })
+      }
+    }
+  });
+
+  </script>
+</html>
