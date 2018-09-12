@@ -21,7 +21,14 @@
     <l-map :zoom="zoom" :center="center">
       <l-tile-layer 
         :url="url" :attribution="attribution"></l-tile-layer>
-      <l-marker :lat-lng="marker" :draggable=true :icon="icon"></l-marker>
+      <l-marker :lat-lng="marker" :draggable=true :icon="icon"
+         @dragstart="dragstart"
+         @drag="drag"
+         @dragend="dragend"
+         @mousedown="mousedown"
+         @mouseup="mouseup"
+         @click="click"
+          ></l-marker>
     </l-map>
   </div>
 </body>
@@ -43,7 +50,27 @@
           iconUrl : './images/marker-icon.png'
         })
       }
-    }
+    },
+      methods: {
+          dragstart() {
+            console.log("dragstart")
+          },
+          drag() {
+            console.log("drag")
+          },
+          dragend() {
+            console.log("dragend")
+          },
+          mousedown() {
+            console.log("mousedown")
+          },
+          mouseup() {
+            console.log("mouseup")
+          },
+          click() {
+              console.log("click")
+          }
+      }
   });
 
   </script>
